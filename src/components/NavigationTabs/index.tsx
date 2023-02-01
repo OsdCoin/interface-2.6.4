@@ -52,6 +52,34 @@ const StyledArrowLeft = styled(ArrowLeft)`
   color: ${({ theme }) => theme.text1};
 `
 
+const StyledNewTabs = styled.div`
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  background: #dce2f2;
+  border-radius: 12px;
+`
+
+const StyledNewNavLink = styled(HistoryLink)<{ isActive: boolean }>`
+  display: flex;
+  font-weight: bold;
+  width: 150px;
+  height: 55px;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: ${({ isActive }) => (isActive ? '#fff' : '#a1add5')};
+  font-size: 22px;
+  background: ${({ isActive }) => (isActive ? '#4965FC' : 'transparent')};
+  /* :hover,
+  :focus {
+    color: ${({ theme }) => darken(0.1, theme.text1)};
+  } */
+`
+
 export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
   const { t } = useTranslation()
   return (
@@ -63,6 +91,19 @@ export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
         {t('pool')}
       </StyledNavLink>
     </Tabs>
+  )
+}
+
+export function NewSwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
+  return (
+    <StyledNewTabs>
+      <StyledNewNavLink id={`swap-nav-link`} to={'/swap'} isActive={active === 'swap'}>
+        Swap
+      </StyledNewNavLink>
+      <StyledNewNavLink id={`pool-nav-link`} to={'/pool'} isActive={active === 'pool'}>
+        Liquidity
+      </StyledNewNavLink>
+    </StyledNewTabs>
   )
 }
 

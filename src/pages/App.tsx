@@ -2,8 +2,8 @@ import React, { Suspense } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
-import Header from '../components/Header'
-import Popups from '../components/Popups'
+// import Header from '../components/Header'
+// import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import AddLiquidity from './AddLiquidity'
@@ -12,6 +12,7 @@ import {
   RedirectOldAddLiquidityPathStructure,
   RedirectToAddLiquidity
 } from './AddLiquidity/redirects'
+import Home from './Home'
 import MigrateV1 from './MigrateV1'
 import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
 import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
@@ -29,17 +30,17 @@ const AppWrapper = styled.div`
   overflow-x: hidden;
 `
 
-const HeaderWrapper = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
-  width: 100%;
-  justify-content: space-between;
-`
+// const HeaderWrapper = styled.div`
+//   ${({ theme }) => theme.flexRowNoWrap}
+//   width: 100%;
+//   justify-content: space-between;
+// `
 
 const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 160px;
+  /* padding-top: 160px; */
   align-items: center;
   flex: 1;
   overflow-y: auto;
@@ -53,9 +54,9 @@ const BodyWrapper = styled.div`
   z-index: 1;
 `
 
-const Marginer = styled.div`
-  margin-top: 5rem;
-`
+// const Marginer = styled.div`
+//   margin-top: 5rem;
+// `
 
 export default function App() {
   return (
@@ -64,15 +65,16 @@ export default function App() {
         <Route component={GoogleAnalyticsReporter} />
         <Route component={DarkModeQueryParamReader} />
         <AppWrapper>
-          <HeaderWrapper>
+          {/* <HeaderWrapper>
             <Header />
-          </HeaderWrapper>
+          </HeaderWrapper> */}
           <BodyWrapper>
-            <Popups />
+            {/* <Popups /> */}
             <Web3ReactManager>
               <Switch>
                 <Route exact strict path="/swap" component={Swap} />
                 <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+                <Route exact strict path="/home" component={Home} />
                 <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
                 <Route exact strict path="/find" component={PoolFinder} />
                 <Route exact strict path="/pool" component={Pool} />
@@ -88,7 +90,7 @@ export default function App() {
                 <Route component={RedirectPathToSwapOnly} />
               </Switch>
             </Web3ReactManager>
-            <Marginer />
+            {/* <Marginer /> */}
           </BodyWrapper>
         </AppWrapper>
       </HashRouter>
